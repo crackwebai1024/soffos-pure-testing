@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import Axios from "axios";
+import "./App.css";
+import React, { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    var headers = {
+      coId: 3,
+      "x-functions-key":
+        "yRQWgvSEnzpRb36y/tfaP7Ogc65hsaaf/JDFU5zHaut8wrbCm6Gqzw==",
+    };
+    Axios.post(
+      "https://soffos-dev.azurewebsites.net/api/discussion/open/start",
+      {},
+      {
+        headers: headers,
+        withCredentials: true,
+        credentials: "same-origin",
+      }
+    )
+      .then((res) => {
+        console.log("response success ==> ", res);
+      })
+      .catch((err) => {
+        console.log("response failed ==> ", err);
+      });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <h1>Pure Testing</h1>
+      {/* <h2>{_cookie}</h2> */}
     </div>
   );
 }
